@@ -19,7 +19,7 @@ set number
 " Set the color scheme.
 colorscheme darkblue
 
-" Install the "vim-plug" plugin manager if necessary.
+" Install the "vim-plug" plugin manager if it is missing.
 source install-plug.vim
 
 " Install plugins.
