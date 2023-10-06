@@ -13,6 +13,9 @@ set smartindent
 " Enable syntax highlighting.
 syntax enable
 
+" Show line numbers.
+set number
+
 " Set the color scheme.
 colorscheme darkblue
 
