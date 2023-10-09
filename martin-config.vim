@@ -19,11 +19,18 @@ set number
 " Set the color scheme.
 colorscheme darkblue
 
+" Save the absolute path of the directory that this script is in. Useful for relative paths.
+const s:cur_dir = expand('<sfile>:h')
+
+" Executes the Vim commands in the Vim script file at the specified (relative) path.
+function Readscript(rel_path)
+  execute 'source ' . s:cur_dir . '/' . a:rel_path
+endfunction
+
 " Install the "vim-plug" plugin manager if it is missing.
-source install-plug.vim
+call Readscript('install-plug.vim')
 
 " Install plugins.
 call plug#begin()
 Plug 'vim-airline/vim-airline'
 call plug#end()
-
