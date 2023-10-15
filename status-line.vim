@@ -1,11 +1,35 @@
 " Define the colors used on the status line.
 highlight StatusBaseColor ctermfg=white ctermbg=none
+highlight StatusModeNormalColor ctermfg=black ctermbg=lightgray
+highlight StatusModeCommandColor ctermfg=black ctermbg=lightgreen
+highlight StatusModeInsertColor ctermfg=black ctermbg=lightred
+highlight StatusModeVisualColor ctermfg=black ctermbg=brown
+highlight StatusModeReplaceColor ctermfg=black ctermbg=lightmagenta
 highlight StatusGitColor ctermfg=black ctermbg=darkyellow
 highlight StatusGitAddColor ctermfg=lightgreen ctermbg=darkyellow
 highlight StatusGitChangeColor ctermfg=lightyellow ctermbg=darkyellow
 highlight StatusGitRemoveColor ctermfg=red ctermbg=darkyellow
 highlight StatusFileDetailsColor ctermfg=black ctermbg=lightgray
 highlight StatusCursorDetailsColor ctermfg=black ctermbg=gray
+
+" Define the colors used for each mode.
+let s:mode_display_data = {
+      \'n': ['NORMAL', 'StatusModeNormalColor'],
+      \'c': ['COMMAND', 'StatusModeCommandColor'],
+      \'i': ['INSERT', 'StatusModeInsertColor'],
+      \'v': ['VISUAL', 'StatusModeVisualColor'],
+      \'R': ['REPLACE', 'StatusModeReplaceColor']
+      \}
+
+" Returns a status line format string that displays the current mode.
+function ModeDisplay()
+  if has_key(s:mode_display_data, mode())
+    let display_data = s:mode_display_data[mode()]
+    return '%#' . display_data[1] . '# ' . display_data[0] . ' %#StatusBaseColor#'
+  else
+    return ''
+  endif
+endfunction
 
 " Returns a status line format string that displays a summary of the lines changed in the current file.
 function LinesChangedSummary()
@@ -31,6 +55,9 @@ set laststatus=2
 
 " Start building the status line from scratch.
 set statusline=%#StatusBaseColor#
+
+" Display the current mode.
+set statusline+=%{%ModeDisplay()%}
 
 " Display the git details if the current file is in a git repository.
 set statusline+=%{%GitDetails()%}
