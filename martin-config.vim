@@ -1,7 +1,7 @@
 " Set indentations to be 2 spaces wide.
-let indent_size=2
-let &tabstop=indent_size
-let &shiftwidth=indent_size
+let indent_size = 2
+let &tabstop = indent_size
+let &shiftwidth = indent_size
 
 " Expand tabs into spaces.
 set expandtab
@@ -16,8 +16,14 @@ syntax enable
 " Show line numbers.
 set number
 
+" Set UTF-8 as the default character encoding.
+set encoding=utf-8
+
+" Set the number of colors to 256.
+set t_Co=256
+
 " Set the color scheme.
-colorscheme darkblue
+colorscheme desert
 
 " Save the absolute path of the directory that this script is in. Useful for relative paths.
 const s:cur_dir = expand('<sfile>:h')
@@ -32,5 +38,8 @@ call Readscript('install-plug.vim')
 
 " Install plugins.
 call plug#begin()
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/vim-gitbranch'
 call plug#end()
+
+" Load the custom statusline.
+call Readscript('statusline.vim')
