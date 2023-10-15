@@ -47,7 +47,7 @@ Plug 'itchyny/vim-gitbranch'
 call plug#end()
 
 " Load the custom status line.
-call Readscript('statusline.vim')
+call Readscript('status-line.vim')
 
 " Load git gutter customizations.
 call Readscript('git-gutter.vim')
