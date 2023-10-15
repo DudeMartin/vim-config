@@ -15,12 +15,14 @@ function LinesChangedSummary()
         \' %#StatusGitRemoveColor#-%#StatusGitColor#' . removed
 endfunction
 
-" Returns a status line format string that displays the current git details like the branch and lines changed.
+" Returns a status line format string that displays the git details like the branch and lines changed.
 function GitDetails()
   if empty(gitbranch#name())
     return ''
-  else
+  elseif &modifiable
     return '%#StatusGitColor# %{gitbranch#name()} | %{%LinesChangedSummary()%} %#StatusBaseColor#'
+  else
+    return '%#StatusGitColor# %{gitbranch#name()} %#StatusBaseColor#'
   endif
 endfunction
 
