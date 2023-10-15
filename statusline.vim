@@ -1,22 +1,26 @@
 " Define the colors used on the status line.
 highlight StatusBaseColor ctermfg=white ctermbg=none
+highlight StatusGitColor ctermfg=black ctermbg=lightblue
 highlight StatusFileDetailsColor ctermfg=black ctermbg=lightgray
 highlight StatusCursorDetailsColor ctermfg=black ctermbg=gray
+
+" Returns a status line format string that displays the current git branch if one exists.
+function DisplayGitBranch()
+  if empty(gitbranch#name())
+    return ""
+  else
+    return "%#StatusGitColor#\ ⎇\ %{gitbranch#name()}\ %#StatusBaseColor#"
+  endif
+endfunction
 
 " Always display the status line.
 set laststatus=2
 
 " Start building the status line from scratch.
-set statusline=
+set statusline=%#StatusBaseColor#
 
 " Display the git branch if the current file is within a git repository.
-if !empty(gitbranch#name())
-  highlight StatusGitColor ctermfg=black ctermbg=lightblue
-
-  set statusline+=%#StatusGitColor#
-  set statusline+=\ ⎇\ %{gitbranch#name()}\ 
-  set statusline+=%#StatusBaseColor#
-endif
+set statusline+=%{%DisplayGitBranch()%}
 
 " Configure the right side of the status line.
 set statusline+=%=

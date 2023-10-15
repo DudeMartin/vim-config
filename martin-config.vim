@@ -15,6 +15,10 @@ syntax enable
 
 " Show line numbers.
 set number
+set relativenumber
+
+" Set the preferred line length to 120 characters.
+set textwidth=120
 
 " Set UTF-8 as the default character encoding.
 set encoding=utf-8
@@ -26,7 +30,7 @@ set t_Co=256
 colorscheme desert
 
 " Save the absolute path of the directory that this script is in. Useful for relative paths.
-const s:cur_dir = expand('<sfile>:h')
+let s:cur_dir = expand('<sfile>:h')
 
 " Executes the Vim commands in the Vim script file at the specified (relative) path.
 function Readscript(rel_path)
