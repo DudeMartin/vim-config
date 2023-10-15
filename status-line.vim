@@ -22,9 +22,10 @@ let s:mode_display_data = {
       \}
 
 " Returns a status line format string that displays the current mode.
-function ModeDisplay()
-  if has_key(s:mode_display_data, mode())
-    let display_data = s:mode_display_data[mode()]
+function CurrentMode()
+  let mode = mode()
+  if has_key(s:mode_display_data, mode)
+    let display_data = s:mode_display_data[mode]
     return '%#' . display_data[1] . '# ' . display_data[0] . ' %#StatusBaseColor#'
   else
     return ''
@@ -41,12 +42,13 @@ endfunction
 
 " Returns a status line format string that displays the git details like the branch and lines changed.
 function GitDetails()
-  if empty(gitbranch#name())
+  let git_branch = gitbranch#name()
+  if empty(git_branch)
     return ''
   elseif &modifiable
-    return '%#StatusGitColor# %{gitbranch#name()} | %{%LinesChangedSummary()%} %#StatusBaseColor#'
+    return '%#StatusGitColor# ' . git_branch . ' | %{%LinesChangedSummary()%} %#StatusBaseColor#'
   else
-    return '%#StatusGitColor# %{gitbranch#name()} %#StatusBaseColor#'
+    return '%#StatusGitColor# ' . git_branch . ' %#StatusBaseColor#'
   endif
 endfunction
 
@@ -57,7 +59,7 @@ set laststatus=2
 set statusline=%#StatusBaseColor#
 
 " Display the current mode.
-set statusline+=%{%ModeDisplay()%}
+set statusline+=%{%CurrentMode()%}
 
 " Display the git details if the current file is in a git repository.
 set statusline+=%{%GitDetails()%}
