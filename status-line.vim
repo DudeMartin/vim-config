@@ -1,21 +1,26 @@
 " Define the colors used on the status line.
 highlight StatusBaseColor ctermfg=white ctermbg=none
-highlight StatusGitColor ctermfg=black ctermbg=lightblue
+highlight StatusGitColor ctermfg=black ctermbg=darkyellow
+highlight StatusGitAddColor ctermfg=lightgreen ctermbg=darkyellow
+highlight StatusGitChangeColor ctermfg=lightyellow ctermbg=darkyellow
+highlight StatusGitRemoveColor ctermfg=red ctermbg=darkyellow
 highlight StatusFileDetailsColor ctermfg=black ctermbg=lightgray
 highlight StatusCursorDetailsColor ctermfg=black ctermbg=gray
 
-" Returns a string that contains a summary of the lines changed in the current file.
+" Returns a status line format string that displays a summary of the lines changed in the current file.
 function LinesChangedSummary()
   let [added, modified, removed] = GitGutterGetHunkSummary()
-  return printf('[+%d ~%d -%d]', added, modified, removed)
+  return '%#StatusGitAddColor#+%#StatusGitColor#' . added .
+        \' %#StatusGitChangeColor#~%#StatusGitColor#' . modified .
+        \' %#StatusGitRemoveColor#-%#StatusGitColor#' . removed
 endfunction
 
 " Returns a status line format string that displays the current git details like the branch and lines changed.
-function DisplayGitDetails()
+function GitDetails()
   if empty(gitbranch#name())
-    return ""
+    return ''
   else
-    return "%#StatusGitColor#\ ⎇\ %{gitbranch#name()}\ %{LinesChangedSummary()}\ %#StatusBaseColor#"
+    return '%#StatusGitColor# %{gitbranch#name()} | %{%LinesChangedSummary()%} %#StatusBaseColor#'
   endif
 endfunction
 
@@ -26,7 +31,7 @@ set laststatus=2
 set statusline=%#StatusBaseColor#
 
 " Display the git details if the current file is in a git repository.
-set statusline+=%{%DisplayGitDetails()%}
+set statusline+=%{%GitDetails()%}
 
 " Configure the right side of the status line.
 set statusline+=%=
