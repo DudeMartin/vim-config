@@ -42,8 +42,12 @@ call Readscript('install-plug.vim')
 
 " Install plugins.
 call plug#begin()
+Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/vim-gitbranch'
 call plug#end()
 
-" Load the custom statusline.
+" Load the custom status line.
 call Readscript('statusline.vim')
+
+" Load git gutter customizations.
+call Readscript('git-gutter.vim')
