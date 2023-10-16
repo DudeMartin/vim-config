@@ -23,6 +23,9 @@ let s:mode_display_data = {
 
 " Returns a status line format string that displays the current mode.
 function CurrentMode()
+  if win_getid() != g:actual_curwin
+    return ''
+  endif
   let mode = mode()
   if has_key(s:mode_display_data, mode)
     let display_data = s:mode_display_data[mode]
