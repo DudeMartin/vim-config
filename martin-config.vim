@@ -29,6 +29,10 @@ set t_Co=256
 " Set the color scheme.
 colorscheme desert
 
+" Enable spell checking and customize the colors.
+highlight SpellBad ctermfg=red ctermbg=none cterm=undercurl
+set spell
+
 " Save the absolute path of the directory that this script is in. Useful for relative paths.
 let s:cur_dir = expand('<sfile>:h')
 
