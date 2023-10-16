@@ -58,3 +58,6 @@ autocmd VimEnter * call Readscript('status-line.vim')
 
 " Load git gutter customizations.
 autocmd VimEnter * call Readscript('git-gutter.vim')
+
+" Load file browser customizations.
+autocmd VimEnter * call Readscript('file-browser.vim')
