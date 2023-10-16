@@ -33,6 +33,9 @@ colorscheme slate
 highlight SpellBad ctermfg=red ctermbg=none cterm=undercurl
 set spell
 
+" Show a menu in the status line for navigating wildcard matches.
+set wildmenu
+
 " Save the absolute path of the directory that this script is in. Useful for relative paths.
 let s:cur_dir = expand('<sfile>:h')
 
