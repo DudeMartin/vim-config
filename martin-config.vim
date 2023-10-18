@@ -1,3 +1,8 @@
+" Make sure that Vi compatibility mode is disabled.
+if &compatible
+  set nocompatible
+endif
+
 " Set indentations to be 2 spaces wide.
 let indent_size = 2
 let &tabstop = indent_size

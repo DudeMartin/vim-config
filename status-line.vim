@@ -77,7 +77,7 @@ set statusline+=%#StatusFileDetailsColor#
 set statusline+=%m\ 
 
 " Display the name of the current file.
-set statusline+=%f\ 
+set statusline+=%t\ 
 
 " Set the background color for the cursor position details.
 set statusline+=%#StatusCursorDetailsColor#\ 
