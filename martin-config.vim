@@ -15,6 +15,9 @@ set expandtab
 set autoindent
 set smartindent
 
+" Configure backspace to always behave as expected.
+set backspace=2
+
 " Enable syntax highlighting.
 syntax enable
 

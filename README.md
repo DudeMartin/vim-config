@@ -7,10 +7,10 @@ This configuration should significantly improve the experience over the default 
 negatively affect performance.
 
 ## Usage
-After cloning the repository, `source` the [martin-config.vim](martin-config.vim) file in your *.vimrc*:
+After cloning the repository, `source` the [martin-config.vim](martin-config.vim) file in your *vimrc*:
 
 ```
-source ~/Programming/vim-config/martin-config.vim
+source ~/vim-config/martin-config.vim
 ```
 
 This configuration uses ["vim-plug"](https://github.com/junegunn/vim-plug) to manage plugins. It will be automatically
