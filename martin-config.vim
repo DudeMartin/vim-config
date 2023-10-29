@@ -18,6 +18,9 @@ set smartindent
 " Configure backspace to always behave as expected.
 set backspace=2
 
+" Disable the annoying bell sound.
+set belloff=all
+
 " Enable syntax highlighting.
 syntax enable
 
