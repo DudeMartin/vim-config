@@ -40,9 +40,9 @@ set t_Co=256
 " Set the color scheme.
 colorscheme slate
 
-" Enable spell checking and customize the colors.
+" Enable spell checking for certain file types and customize the colors.
 highlight SpellBad ctermfg=red ctermbg=none cterm=undercurl
-set spell
+autocmd BufNewFile,BufRead *.md,*.txt,*.vim setlocal spell
 
 " Show a menu in the status line for navigating wildcard matches.
 set wildmenu
