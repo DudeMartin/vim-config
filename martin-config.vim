@@ -24,6 +24,9 @@ set belloff=all
 " Enable syntax highlighting.
 syntax enable
 
+" Explicitly set the regex engine to fix slow syntax highlighting for TypeScript.
+autocmd BufNewFile,BufRead *.ts set regexpengine=0
+
 " Show line numbers.
 set number
 set relativenumber
